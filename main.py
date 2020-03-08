@@ -2,7 +2,8 @@ import os
 import argparse
 
 from utils.external import verifyExternalLatency, printExternalLatency
-
+from utils.internal import checkProtocol
+from utils.banner import plotBanner
 
 def parseArguments():
   '''
@@ -14,7 +15,7 @@ def parseArguments():
   parser = argparse.ArgumentParser(description='Todo')
   parser.add_argument('--version', action='version', version="WAF Scenario Analyzer v1.0")
   parser.add_argument('-v', '--verbose', action="store_true", help="Set verbose true or false")
-  parser.add_argument('-u', '--url', required=True, help='Define host address')
+  parser.add_argument('-u', '--url', required=True, help='Define url address')
 
   return parser.parse_args()
 
@@ -31,10 +32,17 @@ def main():
   '''
   Função principal do programa
   '''
+  plotBanner()
   args = parseArguments()
 
-  response_time = verifyExternalLatency()
-  if args.verbose: printExternalLatency(response_time)
+  if not checkProtocol(args.url):
+    print('[!] Protocol (http/https) must be provided')
+    exit()
+
+  response_external_time = verifyExternalLatency()
+  if args.verbose: printExternalLatency(response_external_time)
+
+  
 
 if __name__ == '__main__':
   check_root()
