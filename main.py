@@ -32,7 +32,6 @@ def main():
   '''
   Função principal do programa
   '''
-  plotBanner()
   args = parseArguments()
 
   if not checkProtocol(args.url):
@@ -46,4 +45,5 @@ def main():
 
 if __name__ == '__main__':
   check_root()
+  plotBanner()
   main()
