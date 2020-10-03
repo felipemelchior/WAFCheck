@@ -1,49 +1,50 @@
-import os
 import argparse
 
-from utils.external import verifyExternalLatency, printExternalLatency
-from utils.internal import checkProtocol
-from utils.banner import plotBanner
+from utils.run_payloads import run_payloads
+
+from utils.utils import (
+  verifyHTTPConnection, 
+  checkRoot, 
+  checkProtocol, 
+  printResults, 
+  plotBanner
+)
 
 def parseArguments():
   '''
   Função que retorna os argumentos recebidos
 
-  :returns: parser -- objetos contendo os argumentos
+  :returns: parser -- objeto contendo os argumentos
   '''
 
   parser = argparse.ArgumentParser(description='Todo')
   parser.add_argument('--version', action='version', version="WAF Scenario Analyzer v1.0")
-  parser.add_argument('-v', '--verbose', action="store_true", help="Set verbose true or false")
   parser.add_argument('-u', '--url', required=True, help='Define url address')
+  parser.add_argument('-p', '--param', help='Define param to be tested')
 
   return parser.parse_args()
-
-def check_root():
-  '''
-  Checa se o usuário tentando rodar o programa é um super-usuário
-  '''
-
-  if os.getuid() != 0:
-    print('User must be root to run this program!')
-    exit()
 
 def main():
   '''
   Função principal do programa
   '''
   args = parseArguments()
+  host = args.url
+  param = args.param
 
-  if not checkProtocol(args.url):
-    print('[!] Protocol (http/https) must be provided')
-    exit()
+  checkProtocol(host)
 
-  response_external_time = verifyExternalLatency()
-  if args.verbose: printExternalLatency(response_external_time)
+  host_external_list = ['https://google.com', 'https://facebook.com', 'https://cloudflare.com'] 
 
+  response_http_external = verifyHTTPConnection(host_external_list)
+  printResults(response_http_external, False)
+
+  response_http_internal = verifyHTTPConnection([host])
+  printResults(response_http_internal, True)
+
+  accepted_payloads = run_payloads(host, param, 'payloads/xss_payloads.txt')
   
-
 if __name__ == '__main__':
-  check_root()
+  checkRoot()
   plotBanner()
   main()
