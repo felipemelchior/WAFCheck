@@ -1,20 +1,28 @@
 import requests
 import os
+import time
 from colorama import Fore, Style
+
+from .constants import payloads_dir
 
 def readPayloads(path):
   try:
-    payload_file = open(path, 'r')
+    normalized_path = normalizePath(path)
+    
+    payload_file = open(normalized_path, 'r')
     payloads = list()
 
     for line in payload_file.readlines():
       payloads.append(line.strip())
    
-    print(f'{Fore.GREEN}Payload file: {path} read sucessfully!{Style.RESET_ALL}')
+    print(f'{Fore.GREEN}Payload file: {os.path.basename(normalized_path)} read sucessfully!{Style.RESET_ALL}')
     
     return payloads     
   except:
     print('[!] Could not open the file {}'.format(path))
+
+def normalizePath(path):
+  return os.path.join(os.getcwd(), payloads_dir, path)
 
 def makeParam(param, payload):
   if (param):
@@ -27,9 +35,12 @@ def run_payloads(host, param, payloads_path):
   accepted_payloads = dict()
   accepted_payloads['get'] = list()
   accepted_payloads['post'] = list()
-  
+
   if payload_list:
     try:
+      print(f'{Fore.YELLOW}Starting tests with {payloads_path}{Style.RESET_ALL}')
+      start = time.time()
+
       # Get Requests
       for payload in payload_list:
         response = requests.get(host, params=makeParam(param, payload))
@@ -43,9 +54,13 @@ def run_payloads(host, param, payloads_path):
         if response.status_code == 200:
           accepted_payloads['post'].append(payload)
 
+
+      end = time.time()
+      print(f'Tests with {payloads_path} ended! Elapsed time {Fore.GREEN}{end - start:.2f} s{Style.RESET_ALL}')
       print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
       print(f'{Fore.RED}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
-
+      print()
+      
       return accepted_payloads
     except:
       print(f'{Fore.RED}[!] Fail to connect to {host}{Style.RESET_ALL}')

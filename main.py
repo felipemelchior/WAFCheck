@@ -10,6 +10,11 @@ from utils.utils import (
   plotBanner
 )
 
+from utils.constants import (
+  accepted_payloads_choice, 
+  host_external_list
+)
+
 def parseArguments():
   '''
   Função que retorna os argumentos recebidos
@@ -21,6 +26,7 @@ def parseArguments():
   parser.add_argument('--version', action='version', version="WAF Scenario Analyzer v1.0")
   parser.add_argument('-u', '--url', required=True, help='Define url address')
   parser.add_argument('-p', '--param', help='Define param to be tested')
+  parser.add_argument('-l', '--list', choices=accepted_payloads_choice, help='Define list of payload to be used', required=True)
 
   return parser.parse_args()
 
@@ -31,10 +37,9 @@ def main():
   args = parseArguments()
   host = args.url
   param = args.param
+  payload_list = args.list
 
   checkProtocol(host)
-
-  host_external_list = ['https://google.com', 'https://facebook.com', 'https://cloudflare.com'] 
 
   response_http_external = verifyHTTPConnection(host_external_list)
   printResults(response_http_external, False)
@@ -42,7 +47,13 @@ def main():
   response_http_internal = verifyHTTPConnection([host])
   printResults(response_http_internal, True)
 
-  accepted_payloads = run_payloads(host, param, 'payloads/xss_payloads.txt')
+  if (payload_list == 'all'):
+    for payload in accepted_payloads_choice:
+      if (payload != 'all'):
+        accepted_payloads = run_payloads(host, param, payload)
+  else:
+    accepted_payloads = run_payloads(host, param, payload_list)
+
   
 if __name__ == '__main__':
   checkRoot()

@@ -21,7 +21,6 @@ def checkRoot():
     print(f'{Fore.RED}[!] User must be root to run this program!{Style.RESET_ALL}')
     exit()
 
-
 def checkProtocol(url):
   if any(protocol in url for protocol in ['http://', 'https://']):
     pass
