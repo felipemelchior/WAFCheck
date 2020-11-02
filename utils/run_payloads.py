@@ -57,8 +57,16 @@ def run_payloads(host, param, payloads_path):
 
       end = time.time()
       print(f'Tests with {payloads_path} ended! Elapsed time {Fore.GREEN}{end - start:.2f} s{Style.RESET_ALL}')
-      print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
-      print(f'{Fore.RED}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
+      
+      if (len(accepted_payloads["get"]) != 0):
+        print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+      else: 
+        print(f'{Fore.GREEN}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+
+      if (len(accepted_payloads["post"]) != 0):
+        print(f'{Fore.RED}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
+      else:
+        print(f'{Fore.GREEN}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
       print()
       
       return accepted_payloads
