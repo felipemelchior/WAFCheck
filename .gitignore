@@ -3,3 +3,7 @@
 
 # Pycache files
 */__pycache__
+
+# Vagrant files
+boxes/.vagrant
+boxes/*/.vagrant
