@@ -7,7 +7,8 @@ from utils.utils import (
   checkRoot, 
   checkProtocol, 
   printResults, 
-  plotBanner
+  plotBanner,
+  outputAcceptedPayloads
 )
 
 from utils.constants import (
@@ -54,6 +55,7 @@ def main():
   else:
     accepted_payloads = run_payloads(host, param, payload_list)
 
+  outputAcceptedPayloads(accepted_payloads)
   
 if __name__ == '__main__':
   checkRoot()

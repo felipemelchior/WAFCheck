@@ -4,6 +4,8 @@ from art import tprint
 from urllib.parse import urlparse
 from colorama import Fore, Style
 
+from .constants import output_file
+
 def plotBanner():
   '''
   Utiliza a lib 'art' para imprimir na tela o nome do programa
@@ -65,4 +67,13 @@ def printResults(response_time, internal):
       print('{} average response time => {:.2f} ms'.format(url, response_time[url]))
     print()
 
+def outputAcceptedPayloads(accepted_payloads):
+  with open(output_file, 'w') as filehandle:
+    filehandle.writelines("-- GET --\n")
+    filehandle.writelines("%s\n" % payload for payload in accepted_payloads["get"])
+
+    filehandle.writelines("-- POST --\n")
+    filehandle.writelines("%s\n" % payload for payload in accepted_payloads["post"])
+    
+  print(f'{Fore.GREEN}Accepted payload writed in file {output_file}{Style.RESET_ALL}')
   
