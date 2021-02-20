@@ -39,6 +39,7 @@ def main():
   host = args.url
   param = args.param
   payload_list = args.list
+  accepted_payloads = dict()
 
   checkProtocol(host)
 
@@ -51,9 +52,9 @@ def main():
   if (payload_list == 'all'):
     for payload in accepted_payloads_choice:
       if (payload != 'all'):
-        accepted_payloads = run_payloads(host, param, payload)
+        accepted_payloads[payload] = run_payloads(host, param, payload)
   else:
-    accepted_payloads = run_payloads(host, param, payload_list)
+    accepted_payloads[payload_list] = run_payloads(host, param, payload_list)
 
   outputAcceptedPayloads(accepted_payloads)
   
