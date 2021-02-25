@@ -1,0 +1,6 @@
+wp-config.php
+config.php
+.htaccess
+.htpasswd
+.git/HEAD
+phpinfo.php

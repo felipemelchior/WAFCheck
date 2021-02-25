@@ -1,0 +1,6 @@
+/etc/passwd
+/etc/shadow
+id_rsa
+.key
+file.rsa
+.config

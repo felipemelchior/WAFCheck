@@ -22,7 +22,7 @@ def readPayloads(path):
     print('[!] Could not open the file {}'.format(path))
 
 def normalizePath(path):
-  return os.path.join(os.getcwd(), payloads_dir, path)
+  return f"{os.path.join(os.getcwd(), payloads_dir, path)}.txt"
 
 def makeParam(param, payload):
   if (param):
@@ -38,7 +38,7 @@ def run_payloads(host, param, payloads_path):
 
   if payload_list:
     try:
-      print(f'{Fore.YELLOW}Starting tests with {payloads_path}{Style.RESET_ALL}')
+      print(f'{Fore.YELLOW}Starting tests with {payloads_path} list{Style.RESET_ALL}')
       start = time.time()
 
       # Get Requests
