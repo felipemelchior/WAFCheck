@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 
 from utils.run_payloads import run_payloads
@@ -5,45 +7,49 @@ from utils.run_payloads import run_payloads
 from utils.utils import (
   verifyHTTPConnection, 
   checkRoot, 
-  checkProtocol, 
-  printResults, 
-  plotBanner,
-  outputAcceptedPayloads
+  checkProtocol,
+  loadConfigFromFile, 
+  printResults,
+  outputAcceptedPayloads,
+  buildAcceptedPayloadsList
 )
 
 from utils.constants import (
   accepted_payloads_choice, 
-  host_external_list
+  host_external_list,
+  payloads_dir,
+  output_file
 )
 
-def parseArguments():
+def parseArguments(payload_dir):
   '''
   Função que retorna os argumentos recebidos
 
-  :returns: parser -- objeto contendo os argumentos
+  :returns: parser -- objeto contendo os argumentos   
   '''
 
   parser = argparse.ArgumentParser(description='Todo')
-  parser.add_argument('--version', action='version', version="WAF Scenario Analyzer v1.0")
+  parser.add_argument('--version', action='version', version="WAFCheck v1.0")
   parser.add_argument('-u', '--url', required=True, help='Define url address')
-  parser.add_argument('-p', '--param', help='Define param to be tested')
-  parser.add_argument('-l', '--list', choices=accepted_payloads_choice, help='Define list of payload to be used', required=True)
+  parser.add_argument('-o', '--output', help='Name of output file')
+  parser.add_argument('-l', '--list', choices=buildAcceptedPayloadsList(payload_dir), help='Define list of payload to be used', required=True)
 
   return parser.parse_args()
 
-def main():
+def main(configs):
   '''
   Função principal do programa
   '''
-  args = parseArguments()
+  args = parseArguments(configs['payloadsDir'] if configs['payloadsDir'] != '' else payloads_dir)
+  output = (args.output if args.output != '' else output_file) 
   host = args.url
-  param = args.param
+  
   payload_list = args.list
   accepted_payloads = dict()
 
   checkProtocol(host)
 
-  response_http_external = verifyHTTPConnection(host_external_list)
+  response_http_external = verifyHTTPConnection(configs['hostExternalList'] if configs['hostExternalList'] != '' else host_external_list)
   printResults(response_http_external, False)
 
   response_http_internal = verifyHTTPConnection([host])
@@ -52,13 +58,12 @@ def main():
   if (payload_list == 'all'):
     for payload in accepted_payloads_choice:
       if (payload != 'all'):
-        accepted_payloads[payload] = run_payloads(host, param, payload)
+        accepted_payloads[payload] = run_payloads(host, payload, configs['blockedRequest'])
   else:
-    accepted_payloads[payload_list] = run_payloads(host, param, payload_list)
+    accepted_payloads[payload_list] = run_payloads(host, payload_list, configs['blockedRequest'])
 
-  outputAcceptedPayloads(accepted_payloads)
+  outputAcceptedPayloads(accepted_payloads, output)
   
 if __name__ == '__main__':
   checkRoot()
-  plotBanner()
-  main()
+  main(loadConfigFromFile())

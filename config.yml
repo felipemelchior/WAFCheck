@@ -1,0 +1,8 @@
+payloadsDir: 'payloads'
+hostExternalList:
+  - 'https://google.com'
+  - 'https://cloudflare.com'
+blockedRequest:
+  - 'Blocked'
+  - 'blocked'
+  - 'detected'

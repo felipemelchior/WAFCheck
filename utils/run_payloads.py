@@ -24,53 +24,40 @@ def readPayloads(path):
 def normalizePath(path):
   return f"{os.path.join(os.getcwd(), payloads_dir, path)}.txt"
 
-def makeParam(param, payload):
-  if (param):
-    return {param: payload} 
-  else:
-    return {'test': payload}
+def printResults(payloads_path, payload_list, time, accepted_payloads):
+  print(f'Tests with {payloads_path} ended! Elapsed time {Fore.GREEN}{time:.2f} s{Style.RESET_ALL}')
+  
+  if (len(accepted_payloads["get"]) != 0):
+    print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+  else: 
+    print(f'{Fore.GREEN}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+  print()
 
-def run_payloads(host, param, payloads_path):
+def run_payloads(host, payloads_path, blocked_requests):
   payload_list = readPayloads(payloads_path)
   accepted_payloads = dict()
   accepted_payloads['get'] = list()
-  accepted_payloads['post'] = list()
+  blocked_request = False
 
   if payload_list:
     try:
       print(f'{Fore.YELLOW}Starting tests with {payloads_path} list{Style.RESET_ALL}')
       start = time.time()
 
-      # Get Requests
       for payload in payload_list:
-        response = requests.get(host, params=makeParam(param, payload))
-        if response.status_code == 200:
-          accepted_payloads['get'].append(payload)
-
-      # Post Requests
-      for payload in payload_list:
-        response = requests.post(host, data=makeParam(param, payload))
-
-        if response.status_code == 200:
-          accepted_payloads['post'].append(payload)
-
+        response = requests.get(host, params={'test': payload})
+        if (response.status_code == 200):
+          for blocked_template in blocked_requests:
+            if blocked_template in response.text: 
+              blocked_request = True
+          
+          if not blocked_request:
+            accepted_payloads['get'].append(payload)
 
       end = time.time()
-      print(f'Tests with {payloads_path} ended! Elapsed time {Fore.GREEN}{end - start:.2f} s{Style.RESET_ALL}')
-      
-      if (len(accepted_payloads["get"]) != 0):
-        print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
-      else: 
-        print(f'{Fore.GREEN}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
-
-      if (len(accepted_payloads["post"]) != 0):
-        print(f'{Fore.RED}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
-      else:
-        print(f'{Fore.GREEN}{len(accepted_payloads["post"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using POST method!'.format(len(accepted_payloads['post']), len(payload_list)))
-      print()
+      printResults(payloads_path, payload_list, end - start, accepted_payloads)
       
       return accepted_payloads
     except:
       print(f'{Fore.RED}[!] Fail to connect to {host}{Style.RESET_ALL}')
-    
     

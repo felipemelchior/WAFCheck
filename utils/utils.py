@@ -1,18 +1,14 @@
 import os
 import requests
-from art import tprint
+import yaml
+import glob
 from urllib.parse import urlparse
 from colorama import Fore, Style
 
-from .constants import output_file
-
-def plotBanner():
-  '''
-  Utiliza a lib 'art' para imprimir na tela o nome do programa
-  '''
-
-  tprint('WAFScA', font="random")
-  print(f'{Fore.GREEN}Created by Felipe H Melchior{Style.RESET_ALL}', end="\n\n")
+from .constants import ( 
+  output_file,
+  config_yml
+)
 
 def checkRoot():
   '''
@@ -29,6 +25,27 @@ def checkProtocol(url):
   else:
     print(f'{Fore.RED}[!] Protocol (http/https) must be provided!{Style.RESET_ALL}')
     exit()
+
+def buildAcceptedPayloadsList(payloads_dir):
+  accepted_payloads_lists = [os.path.splitext(os.path.basename(payload_list))[0] for payload_list in glob.glob(f'{payloads_dir}/*.txt')]
+  accepted_payloads_lists.append('all')
+  return accepted_payloads_lists
+
+def loadConfigFromFile():
+  '''
+  Carrega as configurações do arquivo config.yml
+  :returns: yaml_content -- Dicionário com configurações presentes no yml
+  '''
+  try:
+    with open(config_yml, 'r') as stream:
+      try:
+        return yaml.safe_load(stream)
+      except yaml.YAMLError as e:
+        print(f'{Fore.RED}[!] Fail to load file content : {e}{Style.RESET_ALL}')
+        exit()
+  except Exception as e:
+    print(f'{Fore.RED}[!] Fail to load config file : {e}{Style.RESET_ALL}')
+    exit() 
 
 def verifyHTTPConnection(host_list):
   '''
@@ -67,16 +84,13 @@ def printResults(response_time, internal):
       print('{} average response time => {:.2f} ms'.format(url, response_time[url]))
     print()
 
-def outputAcceptedPayloads(accepted_payloads):
-  with open(output_file, 'w') as filehandle:
+def outputAcceptedPayloads(accepted_payloads, output):
+  with open(output, 'w') as filehandle:
     for key, value in accepted_payloads.items():
       filehandle.writelines(f'## {key.upper()} ##\n')
     
       filehandle.writelines("-- GET --\n")
       filehandle.writelines("%s\n" % payload for payload in value["get"])
-
-      filehandle.writelines("-- POST --\n")
-      filehandle.writelines("%s\n" % payload for payload in value["post"])
       
-  print(f'{Fore.GREEN}Accepted payload writed in file {output_file}{Style.RESET_ALL}')
+  print(f'{Fore.GREEN}Accepted payload writed in file {output}{Style.RESET_ALL}')
   
