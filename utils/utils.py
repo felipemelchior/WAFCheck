@@ -87,10 +87,8 @@ def printResults(response_time, internal):
 def outputAcceptedPayloads(accepted_payloads, output):
   with open(output, 'w') as filehandle:
     for key, value in accepted_payloads.items():
-      filehandle.writelines(f'## {key.upper()} ##\n')
-    
-      filehandle.writelines("-- GET --\n")
-      filehandle.writelines("%s\n" % payload for payload in value["get"])
+      filehandle.writelines(f'## Lista: {key.upper()} ##\n')
+      filehandle.writelines("Payload: %s\n" % payload for payload in value["get"])
       
   print(f'{Fore.GREEN}Accepted payload writed in file {output}{Style.RESET_ALL}')
   

@@ -28,9 +28,9 @@ def printResults(payloads_path, payload_list, time, accepted_payloads):
   print(f'Tests with {payloads_path} ended! Elapsed time {Fore.GREEN}{time:.2f} s{Style.RESET_ALL}')
   
   if (len(accepted_payloads["get"]) != 0):
-    print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+    print(f'{Fore.RED}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server!')
   else: 
-    print(f'{Fore.GREEN}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server, using GET method!')
+    print(f'{Fore.GREEN}{len(accepted_payloads["get"])}/{len(payload_list)}{Style.RESET_ALL} payloads were accepted by the server!')
   print()
 
 def run_payloads(host, payloads_path, blocked_requests):

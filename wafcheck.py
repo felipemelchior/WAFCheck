@@ -41,7 +41,7 @@ def main(configs):
   Função principal do programa
   '''
   args = parseArguments(configs['payloadsDir'] if configs['payloadsDir'] != '' else payloads_dir)
-  output = (args.output if args.output != '' else output_file) 
+  output = (args.output if args.output != None else output_file) 
   host = args.url
   
   payload_list = args.list
