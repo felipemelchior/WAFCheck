@@ -50,7 +50,7 @@ A integridade do arquivo pode ser verificada através do resumo criptográfico (
 
 >https://bit.ly/2RPzbU0
 
-## Máquinas Virtuais (VMs) - ambiente pré-configurado para testes com WAFs
+## Ambientes / Distribuições GNU/Linux
 
 A ferramenta já foi testada e utilizada nos seguintes ambientes:
 
