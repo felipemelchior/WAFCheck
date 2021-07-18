@@ -62,6 +62,13 @@ Kernel = 4.19.0-5-amd64 #1 SMP Debian 4.19.37-5+deb10u2 (2019-08-08) x86_64 GNU/
 Python = Python 3.7.3, requests 2.21.0, colorama 0.3.7, PyYAML 3.13
 ```
 
+- SystemRescue 8.03:
+```sh
+Kernel = 5.10.34-1-lts #1 SMP Sun, 02 May 2021 12:41:09 +0000 x86_64 GNU/Linux
+```
+```sh
+Python = Python 3.9.4, requests 2.25.1, colorama 0.4.4, PyYAML 5.4.1
+```
 ## Autor
 
 👤 **Felipe Melchior**
