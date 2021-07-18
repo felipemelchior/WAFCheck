@@ -54,7 +54,7 @@ A integridade do arquivo pode ser verificada através do resumo criptográfico (
 
 A ferramenta já foi testada e utilizada nos seguintes ambientes:
 
-- Debian 10: Python 3.7.3, requests 2.21.0, colorama 0.3.7, PyYAML 3.13
+- Debian 10: Kernel = 4.19.0-5-amd64 #1 SMP Debian 4.19.37-5+deb10u2 (2019-08-08) x86_64 GNU/Linux Python = Python 3.7.3, requests 2.21.0, colorama 0.3.7, PyYAML 3.13
 
 ## Autor
 
