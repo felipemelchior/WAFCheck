@@ -50,6 +50,12 @@ A integridade do arquivo pode ser verificada através do resumo criptográfico (
 
 >https://bit.ly/2RPzbU0
 
+## Máquinas Virtuais (VMs) - ambiente pré-configurado para testes com WAFs
+
+A ferramenta já foi testada e utilizada nos seguintes ambientes:
+
+- Debian 10: Python 3.7.3, requests 2.21.0, colorama 0.3.7, PyYAML 3.13
+
 ## Autor
 
 👤 **Felipe Melchior**
