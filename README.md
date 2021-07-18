@@ -12,24 +12,35 @@ python3 wafcheck.py -u <host> [-l <lista> -o <output>]
 
 ## Adição de novas listas
 
-A versão atual da ferramenta disponibiliza 1.500 cargas úteis, agrupadas em 10 categorias/arquivos no diretório `payloads/`. As categorias foram definidas de acordo com as 10 vulnerabilidades mais recorrentes em aplicações Web segundo a OWASP 2020. 
+A versão atual da ferramenta disponibiliza 1.500 cargas úteis, agrupadas em 10 categorias/arquivos no diretório `payloads/`. As categorias foram definidas de acordo com as 10 vulnerabilidades mais recorrentes em aplicações Web segundo a OWASP 2020 (>https://owasp.org). 
 - xss.txt: 200 cargas úteis XSS;
 - sqli.txt: 200 cargas úteis SQLi;
-- 50 NoSQL \textit{Injection}, 20 LDAP \textit{Injection}, 100 XML \textit{External Entity} (XXE), 10 \textit{Insecure Deserialization}, 900 \textit{Local File Inclusion} (LFI), 7 \textit{Misconfiguration}, 7 \textit{Sensitive Information Exposure} e 6 \textit{Vulnerable Components}.
+- nosqli.txt: 50 cargas úteis NoSQL Injection;
+- ldapi.txt: 20 cargas úteis LDAP Injection;
+- xxe.txt: 100 cargas úteis XML External Entity (XXE);
+- insecuredesearilization.txt: 10 cargas úteis Insecure Deserialization;
+- lfi.txt: 900 cargas úteis Local File Inclusion (LFI);
+- misconfiguration.txt: 7 cargas úteis Misconfiguration;
+- sensitive.txt: 7 cargas úteis Sensitive Information Exposure;
+- vulnerablecomponents.txt: 6 cargas úteis Vulnerable Components.
 
-Para que uma lista personalizada fique disponível para utilização na ferramenta, siga os seguintes passos:
+Para incluir uma lista personalizada de cargas úteis, é necessário:
 
-* Crie um arquivo de texto contendo os payloads que serão utilizados.
-* Mova o arquivo para o diretório `payloads`.
-* Utilize o parâmetro `-l` ou `--list` definindo a nova lista.
+* Crie um arquivo de texto contendo os payloads (um carga útil por linha) que farão parte da nova lista.
+* Disponibilizar o arquivo no diretório `payloads`.
+* Utilizar o parâmetro `-l` ou `--list` e o nome do arquivo (sem a extensão `.txt`) na linha de comando da ferramenta. 
 
-Por exemplo, a lista `rce.txt` foi adicionada ao diretório, basta utilizar:
+Por exemplo, ao adicionar uma lista de RCE (arquivo `rce.txt`) no diretório `payloads`, basta executar a ferramenta como apresentado a seguir para que a lista de cargas úteis seja carregada nos testes:
 
 ```sh
 python3 wafcheck.py -u <host> -l rce
 ```
 
-Todas as listas disponíveis são exibidas no menu de ajuda da ferramenta, é possível visualizar essa mensagem através da utilização do parâmetro `-h`
+Todas as listas disponíveis no diretório `payloads` são exibidas no menu de ajuda da ferramenta. Para visualizar a ajuda e as listas, basta digitar utilizar o parâmetro `-h`. 
+
+```sh
+python3 wafcheck.py -h
+```
 
 ## Máquinas Virtuais (VMs) - ambiente pré-configurado para testes com WAFs
 Para facilitar os testes com a ferramenta, disponibilizamos quatro máquinas virtuais com as soluções de Web Application Firewall ModSecurity, Naxsi, ShadowDaemon e xWAF já configuradas.
