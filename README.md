@@ -12,6 +12,11 @@ python3 wafcheck.py -u <host> [-l <lista> -o <output>]
 
 ## Adição de novas listas
 
+A versão atual da ferramenta disponibiliza 1.500 cargas úteis, agrupadas em 10 categorias/arquivos no diretório `payloads/`. As categorias foram definidas de acordo com as 10 vulnerabilidades mais recorrentes em aplicações Web segundo a OWASP 2020. 
+- xss.txt: 200 cargas úteis XSS;
+- sqli.txt: 200 cargas úteis SQLi;
+- 50 NoSQL \textit{Injection}, 20 LDAP \textit{Injection}, 100 XML \textit{External Entity} (XXE), 10 \textit{Insecure Deserialization}, 900 \textit{Local File Inclusion} (LFI), 7 \textit{Misconfiguration}, 7 \textit{Sensitive Information Exposure} e 6 \textit{Vulnerable Components}.
+
 Para que uma lista personalizada fique disponível para utilização na ferramenta, siga os seguintes passos:
 
 * Crie um arquivo de texto contendo os payloads que serão utilizados.
