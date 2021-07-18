@@ -64,7 +64,7 @@ SystemRescue 8.03:
 - Kernel = `5.10.34-1-lts #1 SMP Sun, 02 May 2021 12:41:09 +0000 x86_64 GNU/Linux`
 - Python = `Python 3.9.4, requests 2.25.1, colorama 0.4.4, PyYAML 5.4.1`
 
-## Autor
+## Criador 
 
 👤 **Felipe Melchior**
 
