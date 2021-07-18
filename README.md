@@ -52,7 +52,7 @@ A integridade do arquivo pode ser verificada através do resumo criptográfico (
 
 ## Ambientes / Distribuições GNU/Linux
 
-A ferramenta já foi testada e utilizada nos seguintes ambientes:
+A ferramenta já foi testada e utilizada nos seguintes ambientes / distribuições GNU/Linux:
 
 - Debian 10
 ```sh
