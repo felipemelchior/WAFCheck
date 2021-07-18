@@ -26,9 +26,12 @@ python3 wafcheck.py -u <host> -l rce
 
 Todas as listas disponíveis são exibidas no menu de ajuda da ferramenta, é possível visualizar essa mensagem através da utilização do parâmetro `-h`
 
-## VMs para teste
+## Máquinas Virtuais (VMs) - ambiente pré-configurado para testes com WAFs
 Para facilitar os testes com a ferramenta, disponibilizamos quatro máquinas virtuais com as soluções de Web Application Firewall ModSecurity, Naxsi, ShadowDaemon e xWAF já configuradas.
-O link abaixo redireciona para o Google Drive e a integridade do arquivo pode ser verificada através do hash SHA256 `03f8f5b57c2f9e8dee23fd848fbe851d86ce1decf82963f0cd49698a55f474d6`. 
+
+O link a seguir disponibiliza um arquivo compactado contendo as 4 (quatros) VMs. 
+A integridade do arquivo pode ser verificada através do resumo criptográfico (saída hexadecimal da função de hash) SHA256 `03f8f5b57c2f9e8dee23fd848fbe851d86ce1decf82963f0cd49698a55f474d6`. 
+
 >https://bit.ly/2RPzbU0
 
 ## Autor
