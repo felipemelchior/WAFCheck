@@ -50,9 +50,9 @@ A integridade do arquivo pode ser verificada através do resumo criptográfico (
 
 >https://bit.ly/2RPzbU0
 
-## Ambientes / Distribuições GNU/Linux
+## Ambientes 
 
-A ferramenta já foi testada e utilizada nos seguintes ambientes / distribuições GNU/Linux:
+A ferramenta já foi testada e utilizada na prática nos seguintes ambientes / distribuições GNU/Linux:
 
 Debian 10:
 
