@@ -67,9 +67,10 @@ SystemRescue 8.03:
 ## Créditos
 
 👤 **Felipe Melchior** (desenvolvedor)
-👤 **Diego Kreutz** (orientador/colaborador)
 
 * Github: [@felipemelchior](https://github.com/felipemelchior)
+
+👤 **Diego Kreutz** (orientador)
 
 ## Show your support
 
