@@ -70,8 +70,6 @@ SystemRescue 8.03:
 
 * Github: [@felipemelchior](https://github.com/felipemelchior)
 
-👤 **Diego Kreutz** (orientador)
-
 ## Show your support
 
 Give a ⭐ if this project helped you!
